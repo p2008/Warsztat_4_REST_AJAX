@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="form">
+    <form>
+        <input id='id' type="hidden" name="id" value="">
+        <label for="author">author</label>
+        <input id="author" type="text" name="author"/>
+        <label for="title">title</label>
+        <input id="title" type="text" name="title"/>
+        <label for="isbn">isbn</label>
+        <input id="isbn" type="text" name="isbn"/>
+        <label for="publisher">publisher</label>
+        <input id="publisher" type="text" name="publisher"/>
+        <label for="genre">genre</label>
+        <input id="genre" type="text" name="genre"/>
+        <input type="submit" id="submit"/>
+    </form>
+</div>
+
+<div id="books"></div>
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.js"></script>
+<script id="table_books" type="text/x-handlebars-template">
+
+<div class="table">
+    <div class="thead">
+        <div id="headers" class="tr">
+            {{#each headers}}
+                <div class="th">
+                    <span>{{ this }}</span>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="tbody">
+        {{#each data}}
+            <div id="{{ this.id }}" class="tr visible">
+                <div class="td info">{{ this.id }}</div>
+                <div class="td info">{{ this.author }}</div>
+                <div class="td info">{{ this.title }}</div>
+                <div class="td info">{{ this.isbn }}</div>
+                <div class="td info">{{ this.publisher }}</div>
+                <div class="td info">{{ this.genre }}</div>
+                <div class="td del">delete</div>
+            </div>
+            <div id="info" class="hidden"></div>
+        {{/each}}
+    </div>
+</div>
+</script>
+<script id="book_details" type="text/x-handlebars-template">
+    {{#each data}}
+        <div class="td">{{ this }}</div>
+    {{/each}}
+</script>
+
+<script src="app.js"></script>
+</body>
+</html>
